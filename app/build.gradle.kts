@@ -6,16 +6,23 @@ plugins {
 
 android {
     namespace = "com.sample.user"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.sample.user"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        configurations.all {
+            resolutionStrategy {
+                force("androidx.emoji2:emoji2-views-helper:1.3.0")
+                force("androidx.emoji2:emoji2:1.3.0")
+            }
+        }
     }
 
     buildTypes {
@@ -33,6 +40,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        languageVersion = "1.8"
     }
 }
 
@@ -41,6 +49,12 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.koin)
+
+    implementation(project(":domain:network"))
+    implementation(project(":feature:users_list:domain"))
+    implementation(project(":feature:users_list:presentation"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

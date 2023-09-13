@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.sample.users_list.presentation"
-    compileSdk = 34
+    compileSdk = 31
 
     defaultConfig {
         minSdk = 24
@@ -23,6 +23,13 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0-alpha02"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

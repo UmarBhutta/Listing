@@ -1,18 +1,21 @@
 [versions]
-agp = "8.2.0-alpha15"
-kotlin = "1.8.21"
-core-ktx = "1.12.0"
+agp = "7.4.0"
+kotlin = "1.7.21"
+core-ktx = "1.6.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.9.0"
 material3 = "1.1.1"
-org-jetbrains-kotlin-jvm = "1.8.21"
+org-jetbrains-kotlin-jvm = "1.7.21"
 retrofit = "2.9.0"
 koin = "3.4.0"
 compose-ui = "1.5.1"
 compose-activity = "1.7.2"
+coroutines = "1.0.0"
+logging-interceptor = "4.11.0"
+
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -28,6 +31,8 @@ koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin"}
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose-ui"}
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity"}
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging-interceptor"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

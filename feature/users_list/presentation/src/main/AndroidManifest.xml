@@ -3,8 +3,13 @@
 
     <application>
         <activity
-            android:name=".ui.UsersListActivity"
-            android:exported="true" />
+            android:name="com.sample.users_list.presentation.ui.UsersListActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

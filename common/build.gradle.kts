@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.sample.common"
-    compileSdk = 34
+    compileSdk = 31
 
     defaultConfig {
         minSdk = 24
@@ -17,6 +17,10 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0-alpha02"
     }
 
     compileOptions {

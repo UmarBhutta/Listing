@@ -111,14 +111,14 @@ fun UserCard(recipe: UserUiModel) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .padding(8.dp)
-                    .align(Alignment.CenterHorizontally)
+                    .align(Alignment.Start)
             )
             Text(
                 text = recipe.email,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .padding(8.dp)
-                    .align(Alignment.CenterHorizontally)
+                    .align(Alignment.Start)
             )
         }
     }
