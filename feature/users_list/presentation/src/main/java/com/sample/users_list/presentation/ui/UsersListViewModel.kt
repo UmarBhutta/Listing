@@ -18,6 +18,10 @@ class UsersListViewModel(val getUsersListUseCase: UsersListUseCase): BaseViewMod
     val usersList: StateFlow<UsersListState> = _usersListState.asStateFlow()
 
     init {
+        loadUsers()
+    }
+
+    fun loadUsers() {
         fetchData()
     }
 
@@ -34,7 +38,7 @@ class UsersListViewModel(val getUsersListUseCase: UsersListUseCase): BaseViewMod
                 when(val usersListData = getUsersListUseCase()) {
                     is UsersListUseCaseResult.Success -> {
                         _usersListState.update { usersListState ->
-                            usersListState.copy(isLoading = false, users = usersListData.user.toListUserUiModel())
+                            usersListState.copy(isLoading = false, isError = false, errorMessage = null, users = usersListData.users.toListUserUiModel())
                         }
                     }
                     is UsersListUseCaseResult.Error -> {
