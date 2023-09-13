@@ -10,6 +10,14 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/network" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/userlist" />
+            <option value="$PROJECT_DIR$/feature/users_list" />
+            <option value="$PROJECT_DIR$/feature/users_list/api" />
+            <option value="$PROJECT_DIR$/feature/users_list/domain" />
+            <option value="$PROJECT_DIR$/feature/users_list/presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
