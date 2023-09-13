@@ -4,8 +4,10 @@ import androidx.lifecycle.viewModelScope
 import com.sample.common.BaseViewModel
 import com.sample.users_list.api.usecase.UsersListUseCase
 import com.sample.users_list.api.usecase.UsersListUseCaseResult
+import com.sample.users_list.presentation.ui.data.UserDetailsUiModel
 import com.sample.users_list.presentation.ui.data.UserUiModel
 import com.sample.users_list.presentation.ui.data.toListUserUiModel
+import com.sample.users_list.presentation.ui.data.toUserDetailsModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +19,9 @@ class UsersListViewModel(val getUsersListUseCase: UsersListUseCase): BaseViewMod
     private val _usersListState = MutableStateFlow(UsersListState())
     val usersList: StateFlow<UsersListState> = _usersListState.asStateFlow()
 
+    private val _userDetails = MutableStateFlow<UserDetailsUiModel?>(null)
+    val userDetails: StateFlow<UserDetailsUiModel?> = _userDetails.asStateFlow()
+
     init {
         loadUsers()
     }
@@ -27,6 +32,20 @@ class UsersListViewModel(val getUsersListUseCase: UsersListUseCase): BaseViewMod
 
     fun retry() {
         fetchData()
+    }
+
+    fun fetchUserDetails(userId: Int) {
+        viewModelScope.launch {
+            when (val userList = getUsersListUseCase()) {
+                is UsersListUseCaseResult.Success -> {
+                    val user = userList.users.firstOrNull { it.id == userId }
+                    _userDetails.emit(user?.toUserDetailsModel())
+                }
+                else -> {
+                    //do nothing
+                }
+            }
+        }
     }
 
     private fun fetchData() {
@@ -63,3 +82,5 @@ data class UsersListState(
     val errorMessage: String? = null,
     val users: List<UserUiModel> = emptyList()
 )
+
+

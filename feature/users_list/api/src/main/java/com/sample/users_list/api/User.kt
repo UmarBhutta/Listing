@@ -19,7 +19,9 @@ data class Address (
     val city : String,
     val zipcode : String,
     val geo : Geo
-)
+) {
+    fun simplifiedAddress() = "$street, $city, $zipcode"
+}
 
 data class Company (
 

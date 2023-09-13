@@ -1,5 +1,6 @@
 package com.sample.users_list.presentation.ui.composable
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,7 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,11 +35,6 @@ fun UserListScreen(usersListViewModel: UsersListViewModel) {
     val errorMessage by rememberUpdatedState(newValue = usersListState.errorMessage)
 
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Users") }
-            )
-        },
         content = { paddingValue ->
             Column(
                 modifier = Modifier
@@ -75,38 +71,59 @@ fun UserListScreen(usersListViewModel: UsersListViewModel) {
                             }
                         }
                     } else {
-                        UsersList(recipes = usersListState.users)
+                        UsersList(users = usersListState.users, onItemClick = {
+                            usersListViewModel.fetchUserDetails(it)
+                        }
+                        )
                     }
                 }
             }
+
+            val scaffoldState = rememberBottomSheetScaffoldState()
+
+            val userDetails by usersListViewModel.userDetails.collectAsState()
+            if (userDetails != null) {
+                UserDetailsBottomSheet(
+                    bottomSheetScaffoldState = scaffoldState,
+                    userDetails = userDetails
+                )
+                LaunchedEffect(key1 = null) {
+                    scaffoldState.bottomSheetState.expand()
+                }
+            }
+
+
         }
     )
 }
 
 @Composable
-fun UsersList(recipes: List<UserUiModel>) {
+fun UsersList(users: List<UserUiModel>, onItemClick: (id: Int) -> Unit) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        items(items = recipes) { item ->
-            UserCard(recipe = item)
+        items(items = users) { item ->
+            UserCard(user = item, onItemClick = onItemClick)
         }
     }
 }
 
 @Composable
-fun UserCard(recipe: UserUiModel) {
+fun UserCard(user: UserUiModel, onItemClick: (id: Int) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 8.dp),
+            .padding(bottom = 8.dp)
+            .clickable {
+                onItemClick(user.id)
+            },
         elevation = CardDefaults.cardElevation()
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = recipe.name,
+                text = user.name,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
@@ -114,7 +131,7 @@ fun UserCard(recipe: UserUiModel) {
                     .align(Alignment.Start)
             )
             Text(
-                text = recipe.email,
+                text = user.email,
                 fontSize = 14.sp,
                 modifier = Modifier
                     .padding(8.dp)
