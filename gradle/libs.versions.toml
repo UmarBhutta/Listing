@@ -11,6 +11,8 @@ material3 = "1.1.1"
 org-jetbrains-kotlin-jvm = "1.8.21"
 retrofit = "2.9.0"
 koin = "3.4.0"
+compose-ui = "1.5.1"
+compose-activity = "1.7.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -24,6 +26,8 @@ retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = 
 retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin"}
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose-ui"}
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

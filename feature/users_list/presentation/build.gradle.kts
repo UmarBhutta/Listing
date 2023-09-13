@@ -38,6 +38,14 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.activity)
+    implementation(libs.koin)
+
+    implementation(project(":common"))
+    implementation(project(":feature:users_list:api"))
+    implementation(libs.androidx.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
