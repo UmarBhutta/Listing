@@ -1,4 +1,4 @@
-package com.sample.users_list.domain.repo
+package com.sample.users_list.api.repo
 
 import com.sample.users_list.api.User
 

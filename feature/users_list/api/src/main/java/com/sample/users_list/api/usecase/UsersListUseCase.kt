@@ -1,4 +1,6 @@
-package com.sample.users_list.api
+package com.sample.users_list.api.usecase
+
+import com.sample.users_list.api.User
 
 interface UsersListUseCase {
     suspend operator fun invoke(): UsersListUseCaseResult
