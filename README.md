@@ -28,7 +28,15 @@ It consist of three states.
 
 - Loading State. Displaying loader when screen is launched and network call is on the ongoing to fetch the data.
 - Error State. Display snackbar if any error happen with retry button.
-- Recipe List Loaded. Display List of user if data is fetched successfully.
+- User List Loaded. Display List of user if data is fetched successfully.
+- User Details. Upon clicking on user item Modal Bottom sheet loaded with user details
+
+<p align="center">
+  <img  src="./screens/Main.png" width="50%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img  src="./screens/details.png" width="50%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+</p>
 
 
 ## Libraries used for feature development

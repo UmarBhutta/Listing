@@ -155,7 +155,6 @@ class UsersListViewModelTest {
 
     }
 
-
     @After
     fun tearDown() {
         Dispatchers.resetMain()
