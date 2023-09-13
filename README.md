@@ -23,7 +23,7 @@ The app uses MVVM [Model-View-ViewModel] architecture to have a unidirectional f
 ## UI
 Application Design is based on flat designs.
 
-Application have a single screen that is regarded as feature i.e. Recipe List.
+Application have a single screen that is regarded as feature i.e. Users List.
 It consist of three states.
 
 - Loading State. Displaying loader when screen is launched and network call is on the ongoing to fetch the data.
@@ -32,9 +32,9 @@ It consist of three states.
 - User Details. Upon clicking on user item Modal Bottom sheet loaded with user details
 
 <p align="center">
-  <img  src="./screens/Main.png" width="50%">
+  <img  src="./screens/Main.png" width="33%">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img  src="./screens/details.png" width="50%">
+  <img  src="./screens/details.png" width="33%">
 &nbsp; &nbsp; &nbsp; &nbsp;
 </p>
 
