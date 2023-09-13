@@ -12,4 +12,7 @@ dependencies {
     implementation(project(":domain:network"))
     implementation(libs.koin.core)
     implementation(libs.coroutines)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
 }
