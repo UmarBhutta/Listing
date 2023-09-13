@@ -11,4 +11,5 @@ java {
 dependencies {
     implementation(project(":feature:users_list:api"))
     implementation(project(":domain:network"))
+    implementation(libs.koin.core)
 }
