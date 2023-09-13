@@ -8,6 +8,7 @@ import com.sample.users_list.api.usecase.UsersListUseCaseResult
 import com.sample.users_list.presentation.ui.UsersListState
 import com.sample.users_list.presentation.ui.UsersListViewModel
 import com.sample.users_list.presentation.ui.data.toListUserUiModel
+import com.sample.users_list.presentation.ui.data.toUserDetailsModel
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -41,7 +42,6 @@ class UsersListViewModelTest {
         Dispatchers.setMain(dispatcher)
         MockitoAnnotations.initMocks(this)
         getUsersListUseCase = mockk<UsersListUseCase>()
-        coEvery { getUsersListUseCase() } returns UsersListUseCaseResult.Success(users = emptyList())
     }
 
     @Test
@@ -125,6 +125,36 @@ class UsersListViewModelTest {
             cancelAndConsumeRemainingEvents()
         }
     }
+
+    @Test
+    fun `verify user data is loaded for specific user id`() = runTest {
+        val userId = 0
+        val users = listOf<User>(
+            mockk<User>(relaxed = true).copy(
+                id = userId,
+                username = "",
+                email = "",
+                address = mockk(),
+                phone = "",
+                website = "",
+                company = mockk()
+                )
+        )
+        coEvery { getUsersListUseCase() } returns UsersListUseCaseResult.Success(
+            users =  users
+        )
+        val viewModel = UsersListViewModel(getUsersListUseCase)
+
+        viewModel.fetchUserDetails(userId)
+
+        viewModel.userDetails.test {
+            val item = awaitItem()
+            assertEquals(users.first().toUserDetailsModel(), item)
+            cancelAndConsumeRemainingEvents()
+        }
+
+    }
+
 
     @After
     fun tearDown() {
